@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.microservice.cloud</groupId>
+		<artifactId>micro-service-cloud</artifactId>
+		<version>20181207.Alpha</version>
+	</parent>
+	<!-- 项目基础配置 -->
+	<artifactId>cloud-service-redis</artifactId>
+	<name>cloud-service-redis</name>
+	<!-- 项目类型配置 -->
+	<packaging>jar</packaging>
+	<!-- 依赖包配置 -->
+	<dependencies>
+		<!-- 基础核心项目 -->
+		<dependency>
+			<groupId>com.microservice.cloud</groupId>
+			<artifactId>cloud-service-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<!-- redis依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+	</dependencies>
+	<!-- 构建信息配置 -->
+	<build>
+		<finalName>cloud-service-redis</finalName>
+	</build>
+</project>

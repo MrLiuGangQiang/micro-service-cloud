@@ -1,0 +1,56 @@
+server:
+  port: 12010
+spring:
+  application:
+    name: module-web-security
+  zipkin:
+    base-url: http://cloud.server.master:9411
+  sleuth:
+    sampler:
+      percentage: 1.0
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://47.104.87.159:3306/study?useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8&autoReconnect=true&serverTimezone=GMT%2B8
+    username: study
+    password: study
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    database: 0
+    host: 47.104.87.159
+    port: 6379
+    password: study
+    timeout: 5000
+    pool:
+      max-active: 100
+      max-wait: 3000
+      min-idle: 5
+      max-idle: 15
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://cloud.server.one:8761/eureka/,http://cloud.server.two:8762/eureka/,http://cloud.server.three:8763/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}

@@ -1,0 +1,22 @@
+server:
+  port: 8769
+spring:
+  application:
+    name: cloud-turbine-server
+turbine:
+  aggregator:
+    cluster-config: gateway
+  app-config: cloud-gateway-server
+  cluster-name-expression: metadata['cluster']
+  combine-host: true
+  instance-url-suffix:
+    default: actuator/hystrix.stream
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://cloud.server.one:8761/eureka/,http://cloud.server.two:8762/eureka/,http://cloud.server.three:8763/eureka/

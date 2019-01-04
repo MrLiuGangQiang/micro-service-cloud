@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.microservice.cloud</groupId>
+		<artifactId>cloud-modules-service</artifactId>
+		<version>20181207.Alpha</version>
+	</parent>
+	<artifactId>mongodb-file-service</artifactId>
+	<name>mongodb-file-service</name>
+	<packaging>jar</packaging>
+	<dependencies>
+		<!-- 引入core项目 -->
+		<dependency>
+			<groupId>com.microservice.cloud</groupId>
+			<artifactId>cloud-service-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<!-- 引入tools项目 -->
+		<dependency>
+			<groupId>com.microservice.cloud</groupId>
+			<artifactId>cloud-service-tools</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<!-- web项目依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<!-- 引入eureka并 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<!-- 引入undertow -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>
+		<!-- 引入actuator用于系统健康监控 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- mongodb依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+	</dependencies>
+	<!-- 构建配置 -->
+	<build>
+		<finalName>mongodb-file-service</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

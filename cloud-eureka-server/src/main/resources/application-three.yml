@@ -1,0 +1,17 @@
+server:
+  port: 8763
+spring:
+  application:
+    name: cloud-eureka-server
+eureka:
+  instance:
+    hostname: cloud.server.three
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    healthcheck:
+      enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://cloud.server.two:8762/eureka/,http://cloud.server.one:8761/eureka/

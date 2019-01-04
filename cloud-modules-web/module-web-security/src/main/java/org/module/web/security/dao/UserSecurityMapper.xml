@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.module.web.security.dao.UserSecurityMapper">
+	<!-- 查询角色列表 -->
+	<select id="getRoleList" parameterType="org.module.web.security.entity.UserSecurity" resultType="map">
+		SELECT
+			r.`name`,
+			r.`code` 
+		FROM
+			base_user_organization_role uor
+			LEFT JOIN base_role r ON r.id = uor.role_id AND r.enabled = TRUE
+		WHERE
+			uor.enabled = TRUE AND uor.user_info_id=#{uid} AND uor.organization_info_id=#{oid}
+	</select>
+	<!-- 查询权限列表 -->
+	<select id="getPermissionList" parameterType="org.module.web.security.entity.UserSecurity" resultType="map">
+		SELECT
+			op.`name`,
+			op.`code` 
+		FROM
+			base_user_organization_role uor
+			LEFT JOIN base_role r ON r.id = uor.role_id  AND r.enabled = TRUE 
+			LEFT JOIN base_role_operational_permission rop ON rop.role_id = r.id AND rop.enabled = TRUE 
+			LEFT JOIN base_operational_permission op ON op.id = rop.operational_permission_id AND op.enabled = TRUE 
+		WHERE
+			uor.enabled = TRUE AND uor.user_info_id=#{uid} AND uor.organization_info_id=#{oid}
+	</select>
+	<!-- 查询操作列表 -->
+	<select id="getOperationList" parameterType="org.module.web.security.entity.UserSecurity" resultType="map">
+		SELECT
+			oo.`name`,
+			oo.`code` 
+		FROM
+			base_user_organization_role uor
+			LEFT JOIN base_role r ON r.id = uor.role_id  AND r.enabled = TRUE 
+			LEFT JOIN base_role_operational_permission rop ON rop.role_id = r.id AND rop.enabled = TRUE 
+			LEFT JOIN base_operational_permission op ON op.id = rop.operational_permission_id AND op.enabled = TRUE
+			LEFT JOIN base_operational_permission_operation opo on opo.operational_permission_id = op.id AND opo.enabled = TRUE
+			LEFT JOIN base_operational_operation oo on oo.id = opo.operational_operation_id AND oo.enabled = TRUE
+		WHERE
+			uor.enabled = TRUE AND uor.user_info_id=#{uid} AND uor.organization_info_id=#{oid}
+	</select>
+	<!-- 用户登录 -->
+	<select id="getUserByPhoneAndPassword" resultType="map">
+		SELECT
+			ui.id,
+			ui.`name`,
+			ui.phone,
+			ui.id_card idcard,
+			ui.address 
+		FROM
+			base_user_info ui 
+		WHERE ui.phone=#{phone} AND password=#{password}
+	</select>
+</mapper>

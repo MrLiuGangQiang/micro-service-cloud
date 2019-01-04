@@ -1,0 +1,28 @@
+server:
+  port: 11010
+spring:
+  application:
+    name: mongodb-file-service
+  servlet:
+    multipart:
+      max-file-size: 20480KB
+      max-request-size: 20480KB
+  data:
+    mongodb:
+      uri: mongodb://study:study@47.104.87.159:27017/study
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://cloud.server.one:8761/eureka/,http://cloud.server.two:8762/eureka/,http://cloud.server.three:8763/eureka/    
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+file:
+  account: admin
+  password: come564
+  private:
+    key: MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAL5Ge+vkBM4jOP4E73lnLaIY6bXEjUjetlvYCeRFQRckePSDVveOdQKqer7V0fY09z1dkQCsAfXIqAQG2oAYuCiaQiMorJQSchV96uVn/vMZ/hPSj+AXgMbvypLe8oRYERazyyN7r8dfbefKJozWe6xODzTHRlhPE/XeRPOz2aZFAgMBAAECgYBj0D+zh8LJjAqanmYtTmXO0bjP5FKlNkd9OIA/4eB6TmSxB7D4Xh+djWakczAYMsK7yziEnLbOgzs4GYxHhDAeHJB/Qz/OY44DvDK5YYWutmOhOUykmOcMH0Vp1KPcC6ksEzNkL7PKvbyn/d0/1VxTj1ZqRjPCwAMZtGhS8LAygQJBAOob8kWXSJzUcqXBHZ+8Vm0NHxBpjzW2XSfoe5WHqbkpTz9Hxv2t84mZxN+YgblBC+gm0ld1olZZkTuvEojg+OECQQDQEUDB2W+QermmsXyhnOXfiXnsSjVZO9JgyoefdJqKX8AJJbowjL6MrBWNskW+HWhOioaEeKo1PRwDkx8ucqXlAkEA6exkx+6jirmpmUB+5ladkTfUO2UOyR/gs3jUzBQTnkXNvrBtAJxpRawVkUplDQQW7rCj6upK/LdgrF+CSK1rYQJAViBOJe/TdoLWhmHBrUQ9AyLtDRpKqv1QQDCVozOpJM4tt5ueTqpz1dcFtPmuVNvnaVt+AyfPjOoWxoQHzDo44QJBAJdpgXctK32eqkkLF/S3HNdDNna7lOD52G5QZ/26YasVdziWspW7QfCon1LoLJudufPman3aEc1gKkkTdmyaQnc=

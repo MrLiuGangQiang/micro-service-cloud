@@ -1,0 +1,58 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: cloud-zuul-server
+  zipkin:
+    base-url: http://cloud.server.master:9411
+  sleuth:
+    sampler:
+      percentage: 1.0
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://cloud.server.one:8761/eureka/,http://cloud.server.two:8762/eureka/,http://cloud.server.three:8763/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+    metadata-map:
+      cluster: gateway
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      cors:
+        allowed-origins: '*'
+        allowed-methods: '*'
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 10
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 30000
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 5000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+zuul:
+  host:
+    socket-timeout-millis: 10000
+    connect-timeout-millis: 5000
+  ignored-services: '*'
+  routes:
+    module-web-user:
+      service-id: module-web-user
+      path: /api-web-user/**
+module-web-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule

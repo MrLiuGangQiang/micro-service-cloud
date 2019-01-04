@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="false">
+	<!--输出到控制台 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%p] [%t] %c - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 只有测试、正式环境才配置此项 appender必须在里面 不然依然会创建文件 -->
+	<springProfile name="test,prod">
+		<!-- 定义名称和日志路径 -->
+		<property name="application.name" value="redis-delay-service" />
+		<property name="log.path" value="/home/logs" />
+
+		<!-- info级别日志控制 -->
+		<appender name="info_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<!-- 文件路径 -->
+			<file>${log.path}/${application.name}/info.log</file>
+			<!-- 是否追加 默认为true -->
+			<append>true</append>
+			<!-- 滚动策略 日期+大小 策略 -->
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>${log.path}/${application.name}/%d{yyyy-MM-dd}/info/info-%i.zip</fileNamePattern>
+				<!-- 单个日志大小 -->
+				<maxFileSize>50MB</maxFileSize>
+				<!-- 日志保存周期 -->
+				<maxHistory>7</maxHistory>
+				<!-- 总大小 -->
+				<totalSizeCap>2GB</totalSizeCap>
+			</rollingPolicy>
+			<!-- 格式化 -->
+			<encoder>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss} [%p] [%t] %c - %m%n</pattern>
+			</encoder>
+			<!-- 级别过滤 -->
+			<filter class="ch.qos.logback.classic.filter.LevelFilter">
+				<level>INFO</level>
+				<onMatch>ACCEPT</onMatch>
+				<onMismatch>DENY</onMismatch>
+			</filter>
+		</appender>
+
+		<!-- warn级别日志控制 -->
+		<appender name="warn_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<!-- 文件路径 -->
+			<file>${log.path}/${application.name}/warn.log</file>
+			<!-- 是否追加 默认为true -->
+			<append>true</append>
+			<!-- 滚动策略 日期+大小 策略 -->
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>${log.path}/${application.name}/%d{yyyy-MM-dd}/warn/warn-%i.zip</fileNamePattern>
+				<!-- 单个日志大小 -->
+				<maxFileSize>50MB</maxFileSize>
+				<!-- 日志保存周期 -->
+				<maxHistory>15</maxHistory>
+				<!-- 总大小 -->
+				<totalSizeCap>2GB</totalSizeCap>
+			</rollingPolicy>
+			<!-- 格式化 -->
+			<encoder>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss} [%p] [%t] %c - %m%n</pattern>
+			</encoder>
+			<!-- 级别过滤 -->
+			<filter class="ch.qos.logback.classic.filter.LevelFilter">
+				<level>WARN</level>
+				<onMatch>ACCEPT</onMatch>
+				<onMismatch>DENY</onMismatch>
+			</filter>
+		</appender>
+
+		<!-- error级别日志控制 -->
+		<appender name="error_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<!-- 文件路径 -->
+			<file>${log.path}/${application.name}/error.log</file>
+			<!-- 是否追加 默认为true -->
+			<append>true</append>
+			<!-- 滚动策略 日期+大小 策略 -->
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>${log.path}/${application.name}/%d{yyyy-MM-dd}/error/error-%i.zip</fileNamePattern>
+				<!-- 单个日志大小 -->
+				<maxFileSize>50MB</maxFileSize>
+				<!-- 日志保存周期 -->
+				<maxHistory>15</maxHistory>
+				<!-- 总大小 -->
+				<totalSizeCap>2GB</totalSizeCap>
+			</rollingPolicy>
+			<!-- 格式化 -->
+			<encoder>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss} [%p] [%t] %c - %m%n</pattern>
+			</encoder>
+			<!-- 级别过滤 -->
+			<filter class="ch.qos.logback.classic.filter.LevelFilter">
+				<level>ERROR</level>
+				<onMatch>ACCEPT</onMatch>
+				<onMismatch>DENY</onMismatch>
+			</filter>
+		</appender>
+	</springProfile>
+
+	<!-- 特殊处理 -->
+	<logger name="org.xnio" level="warn" />
+	<logger name="com.netflix" level="warn" />
+	<logger name="org.springframework" level="warn" />
+	<logger name="org.service.task.delay" level="debug" />
+
+	<!-- 默认、开发环境 输出日志到控制台 -->
+	<springProfile name="default,dev">
+		<root level="info">
+			<appender-ref ref="console" />
+		</root>
+	</springProfile>
+	<!-- 正式、测试环境 输出日志到文件 -->
+	<springProfile name="test,prod">
+		<root level="warn">
+			<appender-ref ref="info_file" />
+			<appender-ref ref="warn_file" />
+			<appender-ref ref="error_file" />
+		</root>
+	</springProfile>
+</configuration>
