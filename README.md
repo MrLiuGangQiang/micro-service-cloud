@@ -34,5 +34,5 @@ micro-service-cloud─────────────────顶层项�
 相关的技术说明会写在如下三个地方：
 * [简书](https://www.jianshu.com/u/3642563a4185)
 * [CSDN](https://blog.csdn.net/u010175879)
-* [微信号：MrLiuGangQiang]
+* [微信号：MrLiuGangQiang]<br>
 ![](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/wechat.jpg)
