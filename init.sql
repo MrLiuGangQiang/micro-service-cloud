@@ -180,7 +180,7 @@ CREATE TABLE `base_user_info`  (
 -- ----------------------------
 -- Records of base_user_info
 -- ----------------------------
-INSERT INTO `base_user_info` VALUES (1, '刘岗强', '17628288315', '511623199203152696', '1992-03-15', '新怡花园A区', '123456', '2019-01-03 16:33:20');
+INSERT INTO `base_user_info` VALUES (1, '刘岗强', '1728164036', '511623199203158545', '1992-03-15', '新怡花园A区', '123456', '2019-01-03 16:33:20');
 
 -- ----------------------------
 -- Table structure for base_user_organization_role
