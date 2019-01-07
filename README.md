@@ -1,7 +1,7 @@
 ### 项目说明
 该项目是一个典型的由Spring Cloud管理的微服务项目，主要包括如下模块
 
-	- [x] micro-service-cloud─────────────────顶层项目<br>
+- [x] 	micro-service-cloud─────────────────顶层项目<br>
 	- [x] ├──cloud-service-core───────────────基础核心模块<br>
 	- [x] ├──cloud-service-tools──────────────全局通用工具类<br>
 	- [x] ├──cloud-service-reids──────────────Redis二次封装<br>
