@@ -3,16 +3,16 @@
 
 |服务名 | 父级依赖 | 模块说明|
 |----|----|----|
-|>cloud-eureka-server|micro-service-cloud|微服务注册中心[8761]|
-|>cloud-zuul-server|micro-service-cloud|微服务第一代网关[8080]|
-|>cloud-gateway-server|micro-service-cloud|微服务第二代网关[8080]|
-|>cloud-service-core|micro-service-cloud|微服务基础核心模块|
+|> cloud-eureka-server|micro-service-cloud|微服务注册中心[8761]|
+|> cloud-zuul-server|micro-service-cloud|微服务第一代网关[8080]|
+|> cloud-gateway-server|micro-service-cloud|微服务第二代网关[8080]|
+|> cloud-service-core|micro-service-cloud|微服务基础核心模块|
 |>cloud-service-reids|micro-service-cloud|Redis二次封装|
 |>cloud-service-tools|micro-service-cloud|微服务通用工具类|
 |>cloud-turbine-server|micro-service-cloud|熔断器聚合监控[8769]|
 |>cloud-zipkin-server|micro-service-cloud|链路追踪监控[9411]|
-|>cloud-modules-app|micro-service-cloud|App微服务顶层项目|
-|>>modules-app-user|cloud-modules-app|App用户模块微服务[`努力更新中`]|
+|> cloud-modules-app|micro-service-cloud|App微服务顶层项目|
+|>> modules-app-user|cloud-modules-app|App用户模块微服务[`努力更新中`]|
 |>>modules-app-doctor|cloud-modules-app|App医生模块微服务[`努力更新中`]| 
 |>cloud-modules-service|micro-service-cloud|微服务公共服务顶层项目|
 |>>mongodb-file-service|cloud-modules-service|MongoDB文件服务器微服务[11010]|
