@@ -35,4 +35,4 @@ micro-service-cloud─────────────────顶层项�
 * [简书](https://www.jianshu.com/u/3642563a4185)
 * [CSDN](https://blog.csdn.net/u010175879)
 * [微信号：MrLiuGangQiang]<br>
-![](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/wechat.jpg)
+![](https://github.com/MrLiuGangQiang/img/blob/master/user/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg)
