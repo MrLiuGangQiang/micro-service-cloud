@@ -20,9 +20,9 @@
 |cloud-modules-web|micro-service-cloud|Web微服务顶层项目|
 |modules-web-security|cloud-modules-web|Web用户通用权限模块[12010]|
 |modules-web-user|cloud-modules-web|Web用户服务模块[12020]|
-|cloud-modules-wechat|micro-service-cloud|Wechat微服务顶层项目|
-|modules-wechat-user|cloud-modules-wechat|Wechat用户模块微服务[***努力更新中***]| 
-|modules-wechat-doctor|cloud-modules-wechat|Wechat医生模块微服务[***努力更新中***]|
+|> cloud-modules-wechat|micro-service-cloud|Wechat微服务顶层项目|
+|>> modules-wechat-user|cloud-modules-wechat|Wechat用户模块微服务[***努力更新中***]| 
+|>> modules-wechat-doctor|cloud-modules-wechat|Wechat医生模块微服务[***努力更新中***]|
 
 * 修改日志
 
