@@ -27,7 +27,7 @@ micro-service-cloud─────────────────顶层项�
 * 修改日志
 
 |修改日志|修改人|修改日期|版本计划|
-|:----|:----|:----|:---|
+|:----:|:----|:----|:---|
 |[V1.0](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|2019-01-07 |项目初始化|
 
 ### 个人连接
@@ -35,4 +35,4 @@ micro-service-cloud─────────────────顶层项�
 * [简书](https://www.jianshu.com/u/3642563a4185)
 * [CSDN](https://blog.csdn.net/u010175879)
 * [微信号：MrLiuGangQiang]
-![](http://ovheeg7ro.bkt.clouddn.com/aLiangcode.jpg)
+![](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/wechat.jpg)
