@@ -7,6 +7,7 @@
 >> cloud-modules-app ────────────────App微服务模块<br>
 >>> modules-app-user ────────────App用户服务模块[待创建]<br>
 >>> modules-app-doctor ──────────App医生服务模块[待创建]<br>
+d
 >> cloud-modules-service ────────────微服务通用服务模块<br>
 >>> mongodb-file-service ────────Mongodb文件服务模块[11010]<br>
 >>> redis-delay-service ─────────延迟消费服务模块[11020]<br>
