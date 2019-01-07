@@ -26,12 +26,26 @@ micro-service-cloud ──────────────────顶层
 
 |服务名 | 父级依赖 | 模块说明|
 |----|----|----        |
-|thoth|无|为微服务提供统一的pom管理，以及通用组件|  
-|thoth-registry-server|无|注册中心,Eureka|  
-|thoth-config-server| 无|微服务统一配置中心|  
-|thoth-robot-ms|无|springcloud中的一个微服务,其中包含一个简单的增删改查demo|  
-|thoth-ai-ms|无|机器人聊天微服务，内部目前只实现了图灵机器人的调用| 
-|thoth-docs|无|相关文档，技术规范以及编码规范| 
+|cloud-eureka-server|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-gateway-server|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-modules-app|无|为微服务提供统一的pom管理，以及通用组件|  
+|modules-app-user|无|为微服务提供统一的pom管理，以及通用组件|  
+|modules-app-doctor|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-modules-service|无|为微服务提供统一的pom管理，以及通用组件|  
+|mongodb-file-service|无|为微服务提供统一的pom管理，以及通用组件|  
+|redis-delay-service|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-modules-web|无|为微服务提供统一的pom管理，以及通用组件|  
+|modules-web-security|无|为微服务提供统一的pom管理，以及通用组件|  
+|modules-web-user|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-modules-wechat|无|为微服务提供统一的pom管理，以及通用组件|  
+|modules-wechat-user|无|为微服务提供统一的pom管理，以及通用组件|  
+|modules-wechat-doctor|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-service-core|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-service-reids|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-service-tools|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-turbine-server|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-zipkin-server|无|为微服务提供统一的pom管理，以及通用组件|  
+|cloud-zuul-server|无|为微服务提供统一的pom管理，以及通用组件|  
 
 * 修改日志  
 
