@@ -1,4 +1,4 @@
-###项目说明
+### 项目说明
 该项目是一个典型的由Spring Cloud管理的微服务项目，主要包括如下模块
 
 |服务名 | 父级依赖 | 模块说明|
@@ -30,7 +30,7 @@
 |----|----|----|---|
 |[V1.0](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|2019-01-07 |项目初始化|
 
-###个人连接
+### 个人连接
 相关的技术说明会写在如下三个地方：
 * [简书](https://www.jianshu.com/u/3642563a4185)
 * [CSDN](https://blog.csdn.net/u010175879)
