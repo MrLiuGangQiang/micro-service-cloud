@@ -1,7 +1,7 @@
 ### 项目说明
 该项目是一个典型的由Spring Cloud管理的微服务项目，主要包括如下模块
 
-- [-] micro-service-cloud ──────────────────顶层项目<br>
+- [x] micro-service-cloud ──────────────────顶层项目<br>
 - [ ] ├── cloud-eureka-server ──────────────服务注册中心[8761]<br>
 - [x] ├── cloud-gateway-server ─────────────服务网关中心[8080]<br>
 - [x] ├── cloud-modules-app ────────────────App微服务模块<br>
