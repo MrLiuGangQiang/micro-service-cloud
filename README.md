@@ -2,7 +2,7 @@
 该项目是一个典型的由Spring Cloud管理的微服务项目，主要包括如下模块
 
 |服务名 | 父级依赖 | 模块说明|
-|----|----|----|
+|:----:|:----:|:----:|
 |cloud-eureka-server|micro-service-cloud|微服务注册中心[8761]|
 |cloud-zuul-server|micro-service-cloud|微服务第一代网关[8080]|
 |cloud-gateway-server|micro-service-cloud|微服务第二代网关[8080]|
