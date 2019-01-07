@@ -3,7 +3,7 @@
 
 |服务名 | 父级依赖 | 模块说明|
 |----|----|----|
-|- [x]cloud-eureka-server|micro-service-cloud|微服务注册中心[8761]|
+|- [x] cloud-eureka-server|micro-service-cloud|微服务注册中心[8761]|
 |- [x]cloud-zuul-server|micro-service-cloud|微服务第一代网关[8080]|
 |- [x]cloud-gateway-server|micro-service-cloud|微服务第二代网关[8080]|
 |- [x]cloud-service-core|micro-service-cloud|微服务基础核心模块|
