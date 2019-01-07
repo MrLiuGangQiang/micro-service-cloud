@@ -29,6 +29,14 @@ micro-service-cloud─────────────────顶层项�
 |修改日志|修改人|修改日期|版本计划|
 |:----:|:----|:----|:---|
 |[V1.0](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|2019-01-07 |项目初始化|
+|[V1.1](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|待定|新增自动问答|
+
+### 项目介绍
+1. 基于Spring Cloud Finchley SR2 Spring Boot 2.0.7的最新版本。
+2. 注册中心实现高可用配置，详情见eureka的one、two、three三个配置文件。
+3. 实现第一代网关(Zuul)和第二代网关(Gateway)，推荐使用第二代网关，原因不在赘述。
+4. 两代网关都配置了熔断器、超时重试以及负载均衡策略的配置实现IRule可实现自定义的负载均衡策略。
+5. 
 
 ### 个人连接
 相关的技术说明会写在如下三个地方：
