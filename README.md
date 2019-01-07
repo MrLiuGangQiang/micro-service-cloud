@@ -29,6 +29,11 @@ micro-service-cloud─────────────────顶层项�
 |修改日志|修改人|修改日期|版本计划|
 |:----:|:----|:----|:---|
 |[V1.0](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|2019-01-07 |项目初始化|
+|[V1.1](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|待定|新增自动问答|
+
+### 项目介绍
+1. 基于Spring Cloud Finchley SR2 Spring Boot 2.0.7的最新版本
+2. 
 
 ### 个人连接
 相关的技术说明会写在如下三个地方：
