@@ -3,7 +3,7 @@
 
 |服务名 | 父级依赖 | 模块说明|
 |:----|:----|:----:|
-|- [x] cloud-eureka-server|micro-service-cloud|微服务注册中心[8761]|
+|cloud-eureka-server|micro-service-cloud|微服务注册中心[8761]|
 |cloud-zuul-server|micro-service-cloud|微服务第一代网关[8080]|
 |cloud-gateway-server|micro-service-cloud|微服务第二代网关[8080]|
 |cloud-service-core|micro-service-cloud|微服务基础核心模块|
@@ -23,16 +23,11 @@
 |cloud-modules-wechat|micro-service-cloud|Wechat微服务顶层项目|
 |modules-wechat-user|cloud-modules-wechat|Wechat用户模块微服务[***努力更新中***]| 
 |modules-wechat-doctor|cloud-modules-wechat|Wechat医生模块微服务[***努力更新中***]|
-- [x] 需求分析
-- [x] 系统设计
-- [x] 详细设计
-- [ ] 编码
-- [ ] 测试
-- [ ] 交付
+
 * 修改日志
 
-|修改日志 | 修改人 | 修改日期|版本计划|
-|----|----|----|---|
+|修改日志|修改人|修改日期|版本计划|
+|:----|:----|:----|:---|
 |[V1.0](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|2019-01-07 |项目初始化|
 
 ### 个人连接
