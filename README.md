@@ -24,7 +24,12 @@
 |modules-wechat-user|cloud-modules-wechat|Wechat用户模块微服务[***努力更新中***]| 
 |modules-wechat-doctor|cloud-modules-wechat|Wechat医生模块微服务[***努力更新中***]|
 ```
-- [x] sss
+- [x] 需求分析
+- [x] 系统设计
+- [x] 详细设计
+- [ ] 编码
+- [ ] 测试
+- [ ] 交付
 ```
 * 修改日志
 
