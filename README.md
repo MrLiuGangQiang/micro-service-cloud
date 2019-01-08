@@ -185,9 +185,11 @@ public class FallbackController {
 }
 ```
 ```yml
-## Zuul中的超时配置，其中有个知识点就是hystrix的超时时间要大于ribbon的超时时间，而ribbon的超时时间不是简单的ReadTimeout+ConnectTimeout那么简单
-## 它的规则简单用公式来说就是ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1)
-## 源码请参考AbstractRibbonCommand中的getRibbonTimeout方法 其中也有hystrix的超时的逻辑，如果hystrix的超时时间不大于公式计算的时间会导致ribbon在熔断器超时后还会继续重试
+## Zuul中的超时配置，其中有个知识点就是hystrix的超时时间要大于ribbon的超时时间，
+## 而ribbon的超时时间不是简单的ReadTimeout+ConnectTimeout那么简单它的规则简单用公式来说就是
+## ribbonTimeout = (ReadTimeout + ConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1)
+## 源码请参考AbstractRibbonCommand中的getRibbonTimeout方法 其中也有hystrix的超时的逻辑
+## 如果hystrix的超时时间小于公式计算的时间会导致ribbon在熔断器超时后还会继续重试
 hystrix:
   command:
     default:
@@ -205,6 +207,28 @@ zuul:
   host:
     socket-timeout-millis: 10000
     connect-timeout-millis: 5000
+```
+```yml
+## Gateway中的超时配置同上
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 10
+      execution:
+          thread:
+            timeoutInMilliseconds: 30000
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 5000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+```
+```yml
+## 负载均衡配置都是由ribbon提供，语法如下 策略可以是系统默认也可以自己实现IRule,默认规则参考IRule及其实现类
+<客户端>:
+  ribbon:
+    NFLoadBalancerRuleClassName: <策略全限定路径>
 ```
 5. 
 
