@@ -33,7 +33,10 @@ micro-service-cloud─────────────────顶层项�
 
 ### 项目介绍
 1. 基于[Spring Cloud Finchley SR2](https://cloud.spring.io/spring-cloud-static/Finchley.SR2/) [Spring Boot 2.0.7](https://docs.spring.io/spring-boot/docs/2.0.7.RELEASE/reference/htmlsingle/)的最新版本。
-2. 注册中心实现高可用配置，详情见eureka的one、two、three三个配置文件，摘要如下。<br>
+
+2. 核心基础项目内实现类自定义的权限注解，配合RBAC权限模型+拦截器即可实现权限的控制，具体的参考项目中的实现。同时也封装了一些顶层类和结果集等。
+
+3. 注册中心实现高可用配置，详情见eureka的one、two、three三个配置文件，摘要如下。<br>
 ------------------------------------------***配置节点一***----------------------------------------------
 ```yml
 server:
@@ -94,7 +97,8 @@ eureka:
     service-url:
       defaultZone: http://cloud.server.two:8762/eureka/,http://cloud.server.one:8761/eureka/
 ```
-3. 实现第一代网关(Zuul)和第二代网关(Gateway)，推荐使用第二代网关，原因不在赘述。同时两代网关都实现了全局异常捕获、全局fallback、熔断器超时配置、Ribbon负载策略配置等。摘要如下
+
+4. 实现第一代网关(Zuul)和第二代网关(Gateway)，推荐使用第二代网关，原因不在赘述。同时两代网关都实现了全局异常捕获、全局fallback、熔断器超时配置、Ribbon负载策略配置等。摘要如下
 ```java
 //全局异常捕获
 @ExceptionHandler(Exception.class)
@@ -230,7 +234,60 @@ ribbon:
   ribbon:
     NFLoadBalancerRuleClassName: <策略全限定路径>
 ```
-5. 
+
+5. 框架中包含了熔断器聚合监控、链路追踪监控，这里比较常规就不再赘述，唯一遇到的问题就是链路追踪时日志包重复引用的错误如下处理即可
+```xml
+<dependency>
+	<groupId>io.zipkin.java</groupId>
+	<artifactId>zipkin-server</artifactId>
+	<version>${zipkin.version}</version>
+	<!-- 剔除日志包 避免出现重复引用 -->
+	<exclusions>
+		<exclusion>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+```
+6. Redis二次封装的这个项目主要实现了自动延期的功能，可以在配置的时候设置某些缓存是否需要自动延期<默认为ture>,自动延期的将会在获取的时候重置
+过期时间来达到自动延期功能。然后就是添加了一些方法来快捷操作登录的相关信息
+```java
+@Bean
+public RedisCacheManager redisCacheManager(RedisConnectionFactory factory) {
+	/* redis序列化设置 */
+	Jackson2JsonRedisSerializer<?> jsonSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+	ObjectMapper om = new ObjectMapper();
+	om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+	om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+	jsonSerializer.setObjectMapper(om);
+
+	RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+	config = config.entryTtl(Duration.ofMinutes(30))/* 设置默认过期时间 默认30分钟 */
+			.disableCachingNullValues()/* 不缓存空值 */
+			.serializeKeysWith(SerializationPair.fromSerializer(new StringRedisSerializer()))/* 序列化key */
+			.serializeValuesWith(SerializationPair.fromSerializer(jsonSerializer));/* 设置序列化方式 */
+
+	/* 设置一个初始化的缓存空间set集合 */
+	Set<String> cacheNames = new HashSet<>();
+	cacheNames.add(BaseGlobal.CACHE_WEB_USER);
+
+	/* 对每个缓存空间应用不同的配置 */
+	Map<String, RedisCacheConfiguration> configMap = new HashMap<>();
+	configMap.put(BaseGlobal.CACHE_WEB_USER, config.setDelay(true));//自动延期 默认为true 
+	//configMap.put(BaseGlobal.CACHE_WEB_USER, config.setDelay(false));//不自动延期
+
+	RedisCacheManager cacheManager = RedisCacheManager.builder(factory) /* 使用自定义的缓存配置初始化一个cacheManager */
+			.initialCacheNames(cacheNames) /* 注意这两句的调用顺序，一定要先调用该方法设置初始化的缓存名，再初始化相关的配置 */
+			.withInitialCacheConfigurations(configMap).build();
+	return cacheManager;
+}
+```
+
+7. 框架中的MongoDB项目是我用来作为文件服务器的一个实现，很简单实现了上传下载删除和预览的几个接口，大家可以看源码，有朋友问到秒传怎么做
+这里只是简单说一个关键词（MD5）原理自行理解吧
+
+
 
 ### 个人连接
 相关的技术说明会写在如下三个地方：
