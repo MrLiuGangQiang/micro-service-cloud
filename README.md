@@ -287,7 +287,8 @@ public RedisCacheManager redisCacheManager(RedisConnectionFactory factory) {
 7. 框架中的MongoDB项目是我用来作为文件服务器的一个实现，很简单实现了上传下载删除和预览的几个接口，大家可以看源码，有朋友问到秒传怎么做
 这里只是简单说一个关键词（MD5）原理自行理解吧
 
-
+8. Redis延迟消费的项目是利用的Redis的键过期通知来完成的，需要开启Redis的键过期通知配置，对性能有所损耗！项目中实现了分布式锁，防止集群的时候
+重复消费
 
 ### 个人连接
 相关的技术说明会写在如下三个地方：
