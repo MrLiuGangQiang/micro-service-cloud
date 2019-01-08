@@ -27,13 +27,104 @@ micro-service-cloud─────────────────顶层项�
 * 修改日志
 
 |修改日志|修改人|修改日期|版本计划|
-|:----:|:----|:----|:---|
+|:----:|:----|:----:|:---|
 |[V1.0](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|2019-01-07 |项目初始化|
 |[V1.1](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|待定|新增自动问答|
 
 ### 项目介绍
 1. 基于Spring Cloud Finchley SR2 Spring Boot 2.0.7的最新版本。
+```xml
+<!-- Spring boot版本 -->
+<parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>2.0.7.RELEASE</version>
+</parent>
+<!-- 项目基本信息配置 -->
+<groupId>com.microservice.cloud</groupId>
+<artifactId>micro-service-cloud</artifactId>
+<version>20181207.Alpha</version>
+<!-- 声明项目类型 -->
+<packaging>pom</packaging>
+<!-- 项目属性配置 -->
+<properties>
+	<!-- Java版本 -->
+	<java.version>1.8</java.version>
+	<!-- 构建编码 -->
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<!-- Spring Cloud版本 -->
+	<spring-cloud.version>Finchley.SR2</spring-cloud.version>
+</properties>
+<!-- 依赖版本配置 -->
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>${spring-cloud.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+```
 2. 注册中心实现高可用配置，详情见eureka的one、two、three三个配置文件。
+```yml
+##----------------------------------------------------one
+server:
+  port: 8761
+spring:
+  application:
+    name: cloud-eureka-server
+eureka:
+  instance:
+    hostname: cloud.server.one
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    healthcheck:
+      enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://cloud.server.two:8762/eureka/,http://cloud.server.three:8763/eureka/
+##----------------------------------------------------two
+server:
+  port: 8762
+spring:
+  application:
+    name: cloud-eureka-server
+eureka:
+  instance:
+    hostname: cloud.server.two
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    healthcheck:
+      enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://cloud.server.one:8761/eureka/,http://cloud.server.three:8763/eureka/
+##----------------------------------------------------three
+server:
+  port: 8763
+spring:
+  application:
+    name: cloud-eureka-server
+eureka:
+  instance:
+    hostname: cloud.server.three
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
+  client:
+    healthcheck:
+      enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://cloud.server.two:8762/eureka/,http://cloud.server.one:8761/eureka/
+```
 3. 实现第一代网关(Zuul)和第二代网关(Gateway)，推荐使用第二代网关，原因不在赘述。
 4. 两代网关都配置了熔断器、超时重试以及负载均衡策略的配置实现IRule可实现自定义的负载均衡策略。
 5. 
