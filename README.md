@@ -32,44 +32,8 @@ micro-service-cloud─────────────────顶层项�
 |[V1.1](https://github.com/MrLiuGangQiang/micro-service-cloud/blob/master/README.md)|刘岗强|待定|新增自动问答|
 
 ### 项目介绍
-1. 基于Spring Cloud Finchley SR2 Spring Boot 2.0.7的最新版本。
-```xml
-<!-- Spring boot版本 -->
-<parent>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>2.0.7.RELEASE</version>
-</parent>
-<!-- 项目基本信息配置 -->
-<groupId>com.microservice.cloud</groupId>
-<artifactId>micro-service-cloud</artifactId>
-<version>20181207.Alpha</version>
-<!-- 声明项目类型 -->
-<packaging>pom</packaging>
-<!-- 项目属性配置 -->
-<properties>
-	<!-- Java版本 -->
-	<java.version>1.8</java.version>
-	<!-- 构建编码 -->
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<!-- Spring Cloud版本 -->
-	<spring-cloud.version>Finchley.SR2</spring-cloud.version>
-</properties>
-<!-- 依赖版本配置 -->
-<dependencyManagement>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-dependencies</artifactId>
-			<version>${spring-cloud.version}</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-	</dependencies>
-</dependencyManagement>
-```
-2. 注册中心实现高可用配置，详情见eureka的one、two、three三个配置文件，摘要如下。
-
+1. 基于[Spring Cloud Finchley SR2](https://cloud.spring.io/spring-cloud-static/Finchley.SR2/) [Spring Boot 2.0.7](https://docs.spring.io/spring-boot/docs/2.0.7.RELEASE/reference/htmlsingle/)的最新版本。
+2. 注册中心实现高可用配置，详情见eureka的one、two、three三个配置文件，摘要如下。<br>
 ------------------------------------------***配置节点一***----------------------------------------------
 ```yml
 server:
@@ -219,6 +183,28 @@ public class FallbackController {
 		return new JsonApi<>(ApiCodeEnum.TIMEOUT).setMsg(Prompt.bundle("fallback.timeout", lb));
 	}
 }
+```
+```yml
+## Zuul中的超时配置，其中有个知识点就是hystrix的超时时间要大于ribbon的超时时间，而ribbon的超时时间不是简单的ReadTimeout+ConnectTimeout那么简单
+## 它的规则简单用公式来说就是ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1)
+## 源码请参考AbstractRibbonCommand中的getRibbonTimeout方法 其中也有hystrix的超时的逻辑，如果hystrix的超时时间不大于公式计算的时间会导致ribbon在熔断器超时后还会继续重试
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 10
+      execution:
+          thread:
+            timeoutInMilliseconds: 30000
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 5000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+zuul:
+  host:
+    socket-timeout-millis: 10000
+    connect-timeout-millis: 5000
 ```
 5. 
 
