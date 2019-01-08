@@ -70,7 +70,7 @@ micro-service-cloud─────────────────顶层项�
 ```
 2. 注册中心实现高可用配置，详情见eureka的one、two、three三个配置文件，摘要如下。
 
-------------------------------------------配置节点一----------------------------------------------
+------------------------------------------***配置节点一***----------------------------------------------
 ```yml
 server:
   port: 8761
@@ -90,7 +90,7 @@ eureka:
     service-url:
       defaultZone: http://cloud.server.two:8762/eureka/,http://cloud.server.three:8763/eureka/
 ```
-------------------------------------------配置节点二----------------------------------------------
+------------------------------------------***配置节点二***----------------------------------------------
 ```yml      
 server:
   port: 8762
@@ -110,7 +110,7 @@ eureka:
     service-url:
       defaultZone: http://cloud.server.one:8761/eureka/,http://cloud.server.three:8763/eureka/
 ```
-------------------------------------------配置节点三----------------------------------------------
+------------------------------------------***配置节点三***----------------------------------------------
 ```yml         
 server:
   port: 8763
@@ -130,8 +130,96 @@ eureka:
     service-url:
       defaultZone: http://cloud.server.two:8762/eureka/,http://cloud.server.one:8761/eureka/
 ```
-3. 实现第一代网关(Zuul)和第二代网关(Gateway)，推荐使用第二代网关，原因不在赘述。
-4. 两代网关都配置了熔断器、超时重试以及负载均衡策略的配置实现IRule可实现自定义的负载均衡策略。
+3. 实现第一代网关(Zuul)和第二代网关(Gateway)，推荐使用第二代网关，原因不在赘述。同时两代网关都实现了全局异常捕获、全局fallback、熔断器超时配置、Ribbon负载策略配置等。摘要如下
+```java
+//全局异常捕获
+@ExceptionHandler(Exception.class)
+public JsonApi<?> defaultErrorHandler(Exception e) {
+	if (logger.isErrorEnabled()) {
+		logger.error("system appear error msg:{}", e.getMessage());
+	}
+	return new JsonApi<>(ApiCodeEnum.ERROR).setMsg(e.getMessage());
+}
+```
+```java
+/**
+ * Copyright © 2018 Fist Team. All rights reserved.
+ *
+ * @author: LiuGangQiang
+ * @date: 2018年12月12日
+ * @description: 全局熔断器配置(Zuul配置)
+ */
+@Component
+public class ServerFallback implements FallbackProvider {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider#
+	 * getRoute()
+	 */
+	@Override
+	public String getRoute() {
+		return "*";
+	}
+
+	@Override
+	public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+		return new ClientHttpResponse() {
+			@Override
+			public HttpHeaders getHeaders() {
+				HttpHeaders headers = new HttpHeaders();
+				headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+				return headers;
+			}
+
+			@Override
+			public InputStream getBody() throws IOException {
+				ObjectMapper mapper = new ObjectMapper();
+				return new ByteArrayInputStream(mapper.writeValueAsString(new JsonApi<>(ApiCodeEnum.TIMEOUT)).getBytes("UTF-8"));
+			}
+
+			@Override
+			public String getStatusText() throws IOException {
+				return HttpStatus.OK.getReasonPhrase();
+			}
+
+			@Override
+			public HttpStatus getStatusCode() throws IOException {
+				return HttpStatus.OK;
+			}
+
+			@Override
+			public int getRawStatusCode() throws IOException {
+				return HttpStatus.OK.value();
+			}
+
+			@Override
+			public void close() {
+			}
+		};
+	}
+}
+```
+```java
+/**
+ * Copyright © 2018 Fist Team. All rights reserved.
+ *
+ * @author: LiuGangQiang
+ * @date: 2018年12月20日
+ * @description: 全局熔断器配置(Gateway版本)
+ */
+@RestController
+public class FallbackController {
+	private static final Logger log = LoggerFactory.getLogger(FallbackController.class);
+
+	@RequestMapping("/fallback/{lb}")
+	public JsonApi<?> fallback(@PathVariable("lb") String lb) {
+		log.error(Prompt.bundle("fallback.timeout", lb));
+		return new JsonApi<>(ApiCodeEnum.TIMEOUT).setMsg(Prompt.bundle("fallback.timeout", lb));
+	}
+}
+```
 5. 
 
 ### 个人连接
