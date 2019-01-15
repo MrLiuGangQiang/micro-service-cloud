@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.microservice.cloud</groupId>
 		<artifactId>micro-service-cloud</artifactId>
-		<version>20181207.Alpha</version>
+		<version>20190115.RC</version>
 	</parent>
 	<artifactId>cloud-gateway-server</artifactId>
 	<name>cloud-gateway-server</name>

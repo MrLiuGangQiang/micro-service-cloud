@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.microservice.cloud</groupId>
 		<artifactId>cloud-modules-service</artifactId>
-		<version>20181207.Alpha</version>
+		<version>20190115.RC</version>
 	</parent>
 	<artifactId>mongodb-file-service</artifactId>
 	<name>mongodb-file-service</name>

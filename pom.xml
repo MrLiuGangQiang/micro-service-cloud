@@ -11,7 +11,7 @@
 	<!-- 项目基本信息配置 -->
 	<groupId>com.microservice.cloud</groupId>
 	<artifactId>micro-service-cloud</artifactId>
-	<version>20181207.Alpha</version>
+	<version>20190115.RC</version>
 	<!-- 声明项目类型 -->
 	<packaging>pom</packaging>
 	<!-- 项目属性配置 -->
@@ -62,7 +62,9 @@
 		<!-- 通用服务模块 -->
 		<module>cloud-modules-service</module>
 	</modules>
+	<!-- 构建配置 -->
 	<build>
+		<finalName>micro-service-cloud</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
