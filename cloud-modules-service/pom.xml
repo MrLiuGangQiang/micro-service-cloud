@@ -16,8 +16,6 @@
 		<module>mongodb-file-service</module>
 		<!-- 基于redis键过期的延迟队列 -->
 		<module>redis-delay-service</module>
-		<!-- 自动问答 -->
-		<module>auto-question-answer</module>
 	</modules>
 	<!-- 构建配置 -->
 	<build>
