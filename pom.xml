@@ -16,9 +16,10 @@
 	<packaging>pom</packaging>
 	<!-- 项目属性配置 -->
 	<properties>
-		<!-- Java版本 -->
-		<java.version>1.8</java.version>
-		<!-- 构建编码 -->
+		<!-- Maven编译版本配置 -->
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<!-- 项目编码配置 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Spring Cloud版本 -->
 		<spring-cloud.version>Finchley.SR2</spring-cloud.version>
@@ -84,5 +85,12 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		<!-- Maven编译插件 -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 </project>
