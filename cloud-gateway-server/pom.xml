@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>com.microservice.cloud</groupId>
 		<artifactId>micro-service-cloud</artifactId>
-		<version>20190115.RC</version>
+		<version>20190125.RC</version>
 	</parent>
 	<artifactId>cloud-gateway-server</artifactId>
 	<name>cloud-gateway-server</name>
-	<version>20190115.RC</version>
+	<version>20190118.RC</version>
 	<packaging>jar</packaging>
 	<!-- 依赖包配置 -->
 	<dependencies>
@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>com.microservice.cloud</groupId>
 			<artifactId>cloud-service-core</artifactId>
-			<version>${project.parent.version}</version>
+			<version>20190125.RC</version>
 		</dependency>
 		<!-- 引入eureka并去除tomcat -->
 		<dependency>

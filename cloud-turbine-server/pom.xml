@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>com.microservice.cloud</groupId>
 		<artifactId>micro-service-cloud</artifactId>
-		<version>20190115.RC</version>
+		<version>20190125.RC</version>
 	</parent>
 	<artifactId>cloud-turbine-server</artifactId>
 	<name>cloud-turbine-server</name>
-	<version>20190115.RC</version>
+	<version>20190125.RC</version>
 	<packaging>jar</packaging>
 	<!-- 依赖包配置 -->
 	<dependencies>

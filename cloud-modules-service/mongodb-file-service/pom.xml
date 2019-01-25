@@ -7,24 +7,24 @@
 	<parent>
 		<groupId>com.microservice.cloud</groupId>
 		<artifactId>cloud-modules-service</artifactId>
-		<version>20190115.RC</version>
+		<version>20190125.RC</version>
 	</parent>
 	<artifactId>mongodb-file-service</artifactId>
 	<name>mongodb-file-service</name>
-	<version>20190115.RC</version>
+	<version>20190125.RC</version>
 	<packaging>jar</packaging>
 	<dependencies>
 		<!-- 引入core项目 -->
 		<dependency>
 			<groupId>com.microservice.cloud</groupId>
 			<artifactId>cloud-service-core</artifactId>
-			<version>${project.parent.version}</version>
+			<version>20190125.RC</version>
 		</dependency>
 		<!-- 引入tools项目 -->
 		<dependency>
 			<groupId>com.microservice.cloud</groupId>
 			<artifactId>cloud-service-tools</artifactId>
-			<version>${project.parent.version}</version>
+			<version>20190125.RC</version>
 		</dependency>
 		<!-- web项目依赖 -->
 		<dependency>

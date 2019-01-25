@@ -12,7 +12,7 @@
 	<!-- 项目基本信息配置 -->
 	<groupId>com.microservice.cloud</groupId>
 	<artifactId>micro-service-cloud</artifactId>
-	<version>20190115.RC</version>
+	<version>20190125.RC</version>
 	<!-- 声明项目类型 -->
 	<packaging>pom</packaging>
 

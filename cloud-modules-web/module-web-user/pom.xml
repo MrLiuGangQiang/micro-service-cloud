@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>com.microservice.cloud</groupId>
 		<artifactId>cloud-modules-web</artifactId>
-		<version>20190115.RC</version>
+		<version>20190125.RC</version>
 	</parent>
 	<artifactId>module-web-user</artifactId>
 	<name>module-web-user</name>
-	<version>20190115.RC</version>
+	<version>20190125.RC</version>
 	<packaging>jar</packaging>
 	<!-- 属性配置 -->
 	<properties>
