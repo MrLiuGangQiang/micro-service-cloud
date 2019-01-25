@@ -9,6 +9,7 @@
 	</parent>
 	<artifactId>redis-delay-service</artifactId>
 	<name>redis-delay-service</name>
+	<version>20190115.RC</version>
 	<packaging>jar</packaging>
 	<!-- 属性配置 -->
 	<properties>

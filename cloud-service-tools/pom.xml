@@ -10,6 +10,7 @@
 	<!-- 项目基本信息配置 -->
 	<artifactId>cloud-service-tools</artifactId>
 	<name>cloud-service-tools</name>
+	<version>20190115.RC</version>
 	<!-- 项目类型配置 -->
 	<packaging>jar</packaging>
 	<properties>

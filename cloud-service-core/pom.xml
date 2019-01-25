@@ -10,6 +10,7 @@
 	<!-- 项目基础配置 -->
 	<artifactId>cloud-service-core</artifactId>
 	<name>cloud-service-core</name>
+	<version>20190115.RC</version>
 	<!-- 项目类型配置 -->
 	<packaging>jar</packaging>
 	<!-- 构建信息配置 -->

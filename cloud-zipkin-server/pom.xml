@@ -9,6 +9,7 @@
 	</parent>
 	<artifactId>cloud-zipkin-server</artifactId>
 	<name>cloud-zipkin-server</name>
+	<version>20190115.RC</version>
 	<packaging>jar</packaging>
 	<!-- 变量配置 -->
 	<properties>

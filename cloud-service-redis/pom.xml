@@ -10,6 +10,7 @@
 	<!-- 项目基础配置 -->
 	<artifactId>cloud-service-redis</artifactId>
 	<name>cloud-service-redis</name>
+	<version>20190115.RC</version>
 	<!-- 项目类型配置 -->
 	<packaging>jar</packaging>
 	<!-- 依赖包配置 -->

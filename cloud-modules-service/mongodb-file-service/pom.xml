@@ -11,6 +11,7 @@
 	</parent>
 	<artifactId>mongodb-file-service</artifactId>
 	<name>mongodb-file-service</name>
+	<version>20190115.RC</version>
 	<packaging>jar</packaging>
 	<dependencies>
 		<!-- 引入core项目 -->

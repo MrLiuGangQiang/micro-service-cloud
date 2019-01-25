@@ -9,6 +9,7 @@
 	</parent>
 	<artifactId>module-web-user</artifactId>
 	<name>module-web-user</name>
+	<version>20190115.RC</version>
 	<packaging>jar</packaging>
 	<!-- 属性配置 -->
 	<properties>
