@@ -42,6 +42,16 @@
 
 	<!-- 发现依赖和扩展的远程仓库列表 有顺序 -->
 	<repositories>
+		<repository>
+			<id>nexus</id>
+			<url>http://47.104.206.3/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 		<!-- 阿里云仓库 -->
 		<repository>
 			<id>aliyun</id>
@@ -53,8 +63,11 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<!-- 私服仓库 -->
-		<repository>
+	</repositories>
+
+	<!-- 插件依赖和扩展的远程仓库列表 有顺序 -->
+	<pluginRepositories>
+		<pluginRepository>
 			<id>nexus</id>
 			<url>http://47.104.206.3/repository/maven-public/</url>
 			<releases>
@@ -63,11 +76,7 @@
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</repository>
-	</repositories>
-
-	<!-- 插件依赖和扩展的远程仓库列表 有顺序 -->
-	<pluginRepositories>
+		</pluginRepository>
 		<pluginRepository>
 			<id>aliyun</id>
 			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
@@ -76,16 +85,6 @@
 			</releases>
 			<snapshots>
 				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>nexus</id>
-			<url>http://47.104.206.3/repository/maven-public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
