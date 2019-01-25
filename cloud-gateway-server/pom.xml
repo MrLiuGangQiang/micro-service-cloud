@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>cloud-gateway-server</artifactId>
 	<name>cloud-gateway-server</name>
-	<version>20190118.RC</version>
+	<version>20190125.RC</version>
 	<packaging>jar</packaging>
 	<!-- 依赖包配置 -->
 	<dependencies>
