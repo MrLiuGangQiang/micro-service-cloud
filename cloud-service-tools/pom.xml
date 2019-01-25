@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.microservice.cloud</groupId>
@@ -16,9 +14,6 @@
 	<packaging>jar</packaging>
 	<properties>
 		<base64.version>2.3.8</base64.version>
-		<hanlp.version>portable-1.6.8</hanlp.version>
-		<spatial4j.version>0.5</spatial4j.version>
-		<fastjson.version>1.2.47</fastjson.version>
 	</properties>
 	<dependencies>
 		<!-- Base64相关包 -->
