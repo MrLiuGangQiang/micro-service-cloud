@@ -1,98 +1,139 @@
 package org.cloud.service.core.mapper;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import org.cloud.service.core.entity.BaseEntity;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年8月31日
- * @param <T>
- * @description: 顶层Mapper
+ * @since 2019/04/19
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.mapper
+ * @remark base mapper entity extends {@link BaseEntity}
  */
-public abstract interface IBaseMapper<T extends BaseEntity> {
+public abstract interface IBaseMapper<T extends BaseEntity, PK extends Serializable> {
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
+	 * insert by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link Integer}
-	 * @description: 新增
 	 */
 	abstract int insert(T entity);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
+	 * delete by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link Integer}
-	 * @description: 删除
 	 */
 	abstract int delete(T entity);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
+	 * delete by single entity id
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @param id
+	 * @return {@link Integer}
+	 */
+	abstract int deleteById(PK id);
+
+	/**
+	 * update by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link Integer}
-	 * @description: 修改
 	 */
 	abstract int update(T entity);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
+	 * query map by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link Map}
-	 * @description: 查询单条
 	 */
 	abstract Map<String, Object> getOne(T entity);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年12月10日
-	 * @param entity
-	 * @return {@link T}
-	 * @description: 查询单条 实体类返回
+	 * query map by single entity id
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @param id
+	 * @return {@link Map}
 	 */
-	abstract T getEntityOne(T entity);
+	abstract Map<String, Object> getOneById(PK id);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
+	 * query single entity by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @param entity
+	 * @return {@link T}
+	 */
+	abstract T getOneForEntity(T entity);
+
+	/**
+	 * query single entity by single entity id
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @param entity
+	 * @return {@link T}
+	 */
+	abstract T getOneForEntityById(PK id);
+
+	/**
+	 * query list by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link List}
-	 * @description: 查询多条
 	 */
 	abstract List<Map<String, Object>> getList(T entity);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年12月10日
+	 * query list entity by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link List}
-	 * @description: 查询多条 实体类返回
 	 */
-	abstract List<T> getEntityList(T entity);
+	abstract List<T> getListForEntity(T entity);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
+	 * check repeat by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link Map}
-	 * @description: 检查重复
 	 */
 	abstract Map<String, Object> getRepeat(T entity);
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年12月10日
+	 * check repeat by single entity
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link T}
-	 * @description: 检查重复 实体类返回
 	 */
-	abstract T getEntityRepeat(T entity);
+	abstract T getRepeatForEntity(T entity);
 }

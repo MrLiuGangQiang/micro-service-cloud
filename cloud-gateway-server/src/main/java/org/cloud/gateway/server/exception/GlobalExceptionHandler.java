@@ -9,22 +9,32 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月17日
- * @description: 全局异常处理
+ * @since 2019/04/19
+ * @author LiuGangQiang
+ * @project cloud-gateway-server
+ * @package org.cloud.gateway.server.exception
+ * @remark gateway exception handler
  */
 @ControllerAdvice
 @ResponseBody
 public class GlobalExceptionHandler {
-	private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+	/**
+	 * intercepting exceptions and returning uniformly
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @param e exception
+	 * @return {@link JsonApi}
+	 */
 	@ExceptionHandler(Exception.class)
 	public JsonApi<?> defaultErrorHandler(Exception e) {
-		if (logger.isErrorEnabled()) {
-			logger.error("system appear error msg:{}", e.getMessage());
+		if (LOGGER.isErrorEnabled()) {
+			LOGGER.error("system appear error msg --> {}", e.toString());
 		}
-		return new JsonApi<>(ApiCodeEnum.ERROR).setMsg(e.getMessage());
+		return new JsonApi<>(ApiCodeEnum.ERROR).setMsg(e.toString());
 	}
 }

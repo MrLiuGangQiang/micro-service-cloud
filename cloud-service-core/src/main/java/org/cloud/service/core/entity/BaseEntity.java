@@ -4,40 +4,45 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月10日
- * @description: 顶层实体类
+ * @since 2019/04/19
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.entity
+ * @remark base entity
  */
+@SuppressWarnings("serial")
 public class BaseEntity implements Serializable {
 
-	/**
-	 * @type: {@link long}
-	 * @author: LiuGangQiang
-	 * @date: 2018年12月10日
-	 * @description: 序列化唯一ID
-	 */
-	private static final long serialVersionUID = 5487925883335071700L;
 	/**
 	 * @type: {@link Integer}
 	 * @author: LiuGangQiang
 	 * @date: 2018年8月31日
 	 * @description: 当前页 默认1 不参与序列化
 	 */
+	/**
+	 * page default 1 no serialization
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link Integer}
+	 */
 	transient Integer page;
 	/**
-	 * @type: {@link Integer}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 每页记录数 默认10 不参与序列化
+	 * page size default 10 no serialization
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link Integer}
 	 */
 	transient Integer pageSize;
 	/**
-	 * @type: {@link List<Sort>}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 排序list 不参与序列化
+	 * sort set no serialization
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link List<Sort>}
 	 */
 	transient List<Sort> sorts;
 

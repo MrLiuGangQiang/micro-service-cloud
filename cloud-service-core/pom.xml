@@ -7,13 +7,26 @@
 		<artifactId>micro-service-cloud</artifactId>
 		<version>20190125.RC</version>
 	</parent>
-	<!-- 项目基础配置 -->
 	<artifactId>cloud-service-core</artifactId>
 	<name>cloud-service-core</name>
 	<version>20190125.RC</version>
-	<!-- 项目类型配置 -->
 	<packaging>jar</packaging>
-	<!-- 构建信息配置 -->
+	<!-- dependencies -->
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+	</dependencies>
+	<!-- build settings -->
 	<build>
 		<finalName>cloud-service-core</finalName>
 	</build>

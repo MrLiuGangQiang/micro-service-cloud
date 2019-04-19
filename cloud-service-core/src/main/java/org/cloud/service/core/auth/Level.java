@@ -1,36 +1,38 @@
 package org.cloud.service.core.auth;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年8月31日
- * @description: 安全级别枚举类<br>
- *               目前提供三种级别<br>
- *               ROLE:角色级别<br>
- *               PERMISSION:权限级别<br>
- *               OPERATION:操作（方法）级别
+ * @since 2019/04/19
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.auth
+ * @remark rbac permission level<br>
  */
 public enum Level {
+
 	/**
-	 * @type: {@link Level}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 角色
+	 * role can contain one or more permission
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link Level}
 	 */
 	ROLE,
 	/**
-	 * @type: {@link Level}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 权限
+	 * permission can contain one or more operation
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link Level}
 	 */
 	PERMISSION,
 	/**
-	 * @type: {@link Level}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 操作
+	 * operation current minimum authority
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link Level}
 	 */
 	OPERATION
 }

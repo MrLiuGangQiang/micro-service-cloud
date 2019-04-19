@@ -5,11 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月19日
- * @description: GatewayApplication
+ * @since 2019/04/19
+ * @author LiuGangQiang
+ * @project cloud-gateway-server
+ * @package org.cloud.gateway.server
+ * @remark gateway main
  */
 @SpringCloudApplication
 public class GatewayApplication {

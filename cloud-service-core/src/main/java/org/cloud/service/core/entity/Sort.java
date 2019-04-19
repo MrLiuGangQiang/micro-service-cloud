@@ -1,26 +1,30 @@
 package org.cloud.service.core.entity;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月10日
- * @description: 排序辅助类
+ * @since 2019/04/19
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.entity
+ * @remark sort entity
  */
 public class Sort {
 
 	/**
-	 * @type: {@link String}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 字段名
+	 * sort field
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link String}
 	 */
 	private String field;
 	/**
-	 * @type: {@link String}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 排序规则 默认ASC
+	 * sort direction default rule asc
+	 *
+	 * @since 2019/04/19
+	 * @author LiuGangQiang
+	 * @type {@link String}
 	 */
 	private String direction;
 

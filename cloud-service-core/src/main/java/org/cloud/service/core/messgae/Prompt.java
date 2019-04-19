@@ -1,9 +1,8 @@
-package org.cloud.gateway.server.message;
+package org.cloud.service.core.messgae;
 
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 
 /**
  * Copyright © 2018 Fist Team. All rights reserved.

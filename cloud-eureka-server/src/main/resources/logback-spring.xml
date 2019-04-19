@@ -84,7 +84,7 @@
 
 	<!-- default/dev/one/two/three out console -->
 	<springProfile name="default,dev,one,two,three">
-		<root level="debug">
+		<root level="info">
 			<appender-ref ref="console" />
 		</root>
 	</springProfile>
