@@ -7,19 +7,17 @@
 		<artifactId>micro-service-cloud</artifactId>
 		<version>20190125.RC</version>
 	</parent>
-	<!-- 项目基础配置 -->
 	<artifactId>cloud-eureka-server</artifactId>
 	<name>cloud-eureka-server</name>
 	<version>20190125.RC</version>
-	<!-- 声明项目类型 -->
 	<packaging>jar</packaging>
-	<!-- 依赖包配置 -->
+	<!-- dependencies -->
 	<dependencies>
-		<!-- 引入eureka-server -->
+		<!-- eureka-server -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-			<!-- 不用tomcat -->
+			<!-- exclusion tomcat -->
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -27,13 +25,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- 引入undertow -->
+		<!-- undertow -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
 	</dependencies>
-	<!-- 构建配置 -->
+	<!-- build settings -->
 	<build>
 		<finalName>cloud-eureka-server</finalName>
 		<plugins>
