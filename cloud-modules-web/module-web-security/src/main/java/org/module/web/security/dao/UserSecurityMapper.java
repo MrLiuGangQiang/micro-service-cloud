@@ -16,7 +16,7 @@ import org.module.web.security.entity.UserSecurity;
  * @description: UserSecurityMapper
  */
 @Mapper
-public interface UserSecurityMapper extends IBaseMapper<UserSecurity> {
+public interface UserSecurityMapper extends IBaseMapper<UserSecurity, Integer> {
 
 	List<Map<String, Object>> getOperationList(UserSecurity security);
 

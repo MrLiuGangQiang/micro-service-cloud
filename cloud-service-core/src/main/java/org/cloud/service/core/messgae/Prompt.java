@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
  * @date: 2018年12月17日
  * @description: Prompt
  */
-public class Prompt {
+public class Prompt  {
 	private static String filePath = "i18n.prompt";
 
 	public static String bundle(String key) {

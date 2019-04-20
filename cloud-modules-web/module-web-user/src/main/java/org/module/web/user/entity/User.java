@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.cloud.service.core.entity.BaseEntity;
-import org.cloud.service.core.valid.Valided.SelectAll;
+import org.cloud.service.core.valid.Valided.QueryList;
 
 /**
  * Copyright © 2018 Fist Team. All rights reserved.
@@ -115,13 +115,13 @@ public class User extends BaseEntity {
 	}
 
 	@Override
-	@NotNull(message = "{page.empty}", groups = { SelectAll.class })
+	@NotNull(message = "{page.empty}", groups = { QueryList.class })
 	public Integer getPage() {
 		return super.getPage();
 	}
 
 	@Override
-	@NotNull(message = "{pageSize.empty}", groups = { SelectAll.class })
+	@NotNull(message = "{pageSize.empty}", groups = { QueryList.class })
 	public Integer getPageSize() {
 		return super.getPageSize();
 	}

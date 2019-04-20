@@ -1,35 +1,45 @@
 package org.cloud.service.core.result;
 
 import java.util.List;
-import java.util.Map;
-
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月11日
- * @description: 多行数据实体类
+ * @since 2019/04/20
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.result
+ * @remark multiline rows
  */
-public class MultiLine {
+public class MultiLine<T> {
 
 	/**
-	 * @type: {@link Long}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 总记录数
+	 * total rows
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link Long}
 	 */
 	private Long total;
 
 	/**
-	 * @type: {@link List}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 列表数据
+	 * multiline records
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link List<Map<String,Object>>}
 	 */
-	private List<Map<String, Object>> rows;
+	private List<T> rows;
 
-	public MultiLine(long total, List<Map<String, Object>> rows) {
+	/**
+	 * constructor by total and rows
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @param total
+	 * @param rows
+	 */
+	public MultiLine(long total, List<T> rows) {
 		this.total = total;
 		this.rows = rows;
 	}
@@ -41,15 +51,17 @@ public class MultiLine {
 		return total;
 	}
 
-	public void setTotal(Long total) {
+	public MultiLine<T> setTotal(Long total) {
 		this.total = total;
+		return this;
 	}
 
-	public List<Map<String, Object>> getRows() {
+	public List<T> getRows() {
 		return rows;
 	}
 
-	public void setRows(List<Map<String, Object>> rows) {
+	public MultiLine<T> setRows(List<T> rows) {
 		this.rows = rows;
+		return this;
 	}
 }

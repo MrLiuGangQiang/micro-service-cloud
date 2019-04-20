@@ -3,33 +3,41 @@ package org.cloud.service.core.result;
 import java.io.Serializable;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月10日
- * @description: 结果集实体类
+ * @since 2019/04/20
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.result
+ * @remark json api result set
  */
 public class JsonApi<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	/**
-	 * @type: {@link Integer}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 状态码
+	 * request result code
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link Integer}
 	 */
 	private Integer code;
+
 	/**
-	 * @type: {@link Object}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 数据
+	 * request result data type is {@link T}
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link T}
 	 */
 	private T data;
+
 	/**
-	 * @type: {@link String}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 消息
+	 * requset result messgae
+	 * 
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link String}
 	 */
 	private String msg;
 
@@ -37,22 +45,25 @@ public class JsonApi<T> implements Serializable {
 	}
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年12月10日
-	 * @param code 状态码
-	 * @description: 根据状态码构造结果集
+	 * constructor by {@link ApiCodeEnum}
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @param code
 	 */
 	public JsonApi(ApiCodeEnum code) {
+		this.data = null;
 		this.code = code.getValue();
 		this.msg = code.getMessage();
 	}
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年12月10日
-	 * @param code 状态码
-	 * @param data 数据实体
-	 * @description: 根据状态码和数据构造结果集
+	 * constructor by {@link ApiCodeEnum} and {@link T}
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @param code
+	 * @param data
 	 */
 	public JsonApi(ApiCodeEnum code, T data) {
 		this.data = data;
@@ -60,20 +71,51 @@ public class JsonApi<T> implements Serializable {
 		this.msg = code.getMessage();
 	}
 
+	/**
+	 * constructor by code and message
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @param code
+	 * @param message
+	 */
+	public JsonApi(int code, String message) {
+		this.data = null;
+		this.code = code;
+		this.msg = message;
+	}
+
+	/**
+	 * constructor by code and message and data
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @param code
+	 * @param message
+	 * @param data
+	 */
+	public JsonApi(int code, String message, T data) {
+		this.data = null;
+		this.code = code;
+		this.msg = message;
+	}
+
 	public Integer getCode() {
 		return code;
 	}
 
-	public void setCode(Integer code) {
+	public JsonApi<T> setCode(Integer code) {
 		this.code = code;
+		return this;
 	}
 
 	public T getData() {
 		return data;
 	}
 
-	public void setData(T data) {
+	public JsonApi<T> setData(T data) {
 		this.data = data;
+		return this;
 	}
 
 	public String getMsg() {
@@ -86,11 +128,12 @@ public class JsonApi<T> implements Serializable {
 	}
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年12月10日
+	 * compare code
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @param code
 	 * @return {@link Boolean}
-	 * @description: 状态码比较
 	 */
 	public boolean compare(ApiCodeEnum code) {
 		return getCode() == code.getValue();

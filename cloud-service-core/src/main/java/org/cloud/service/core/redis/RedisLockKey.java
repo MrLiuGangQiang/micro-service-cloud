@@ -3,11 +3,13 @@ package org.cloud.service.core.redis;
 import java.lang.annotation.*;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月11日
- * @description: 锁定的key配置
+ * @since 2019/04/20
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.redis
+ * @remark distributed redis lock key
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
@@ -15,10 +17,11 @@ import java.lang.annotation.*;
 @Inherited
 public @interface RedisLockKey {
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年11月21日
+	 * lock paramter name
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @return {@link String}
-	 * @description: 参数名
 	 */
 	String name() default "";
 }

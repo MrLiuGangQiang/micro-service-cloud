@@ -13,12 +13,14 @@ import org.cloud.service.core.entity.BaseEntity;
  * @author LiuGangQiang
  * @project cloud-service-core
  * @package org.cloud.service.core.mapper
- * @remark base mapper entity extends {@link BaseEntity}
+ * @remark base mapper<br>
+ *         entity extends {@link BaseEntity} <br>
+ *         pk implements {@link Serializable}
  */
 public abstract interface IBaseMapper<T extends BaseEntity, PK extends Serializable> {
 
 	/**
-	 * insert by single entity
+	 * insert single object by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
@@ -28,7 +30,7 @@ public abstract interface IBaseMapper<T extends BaseEntity, PK extends Serializa
 	abstract int insert(T entity);
 
 	/**
-	 * delete by single entity
+	 * delete records by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
@@ -38,17 +40,17 @@ public abstract interface IBaseMapper<T extends BaseEntity, PK extends Serializa
 	abstract int delete(T entity);
 
 	/**
-	 * delete by single entity id
+	 * delete single record by single instance primary key
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param id
 	 * @return {@link Integer}
 	 */
-	abstract int deleteById(PK id);
+	abstract int deleteByPrimaryKey(PK id);
 
 	/**
-	 * update by single entity
+	 * update records by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
@@ -58,82 +60,82 @@ public abstract interface IBaseMapper<T extends BaseEntity, PK extends Serializa
 	abstract int update(T entity);
 
 	/**
-	 * query map by single entity
+	 * query single record to map by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link Map}
 	 */
-	abstract Map<String, Object> getOne(T entity);
+	abstract Map<String, Object> queryOne(T entity);
 
 	/**
-	 * query map by single entity id
+	 * query single record to map by single instance primary key
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param id
 	 * @return {@link Map}
 	 */
-	abstract Map<String, Object> getOneById(PK id);
+	abstract Map<String, Object> queryOneByPrimaryKey(PK id);
 
 	/**
-	 * query single entity by single entity
+	 * query single record to entity by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link T}
 	 */
-	abstract T getOneForEntity(T entity);
+	abstract T queryOneForEntity(T entity);
 
 	/**
-	 * query single entity by single entity id
+	 * query single record to entity by single instance primary key
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link T}
 	 */
-	abstract T getOneForEntityById(PK id);
+	abstract T queryOneForEntityByPrimaryKey(PK id);
 
 	/**
-	 * query list by single entity
+	 * query multiple records to list>map by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link List}
 	 */
-	abstract List<Map<String, Object>> getList(T entity);
+	abstract List<Map<String, Object>> queryList(T entity);
 
 	/**
-	 * query list entity by single entity
+	 * query multiple records to list>entity by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link List}
 	 */
-	abstract List<T> getListForEntity(T entity);
+	abstract List<T> queryListForEntity(T entity);
 
 	/**
-	 * check repeat by single entity
+	 * query repeat by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link Map}
 	 */
-	abstract Map<String, Object> getRepeat(T entity);
+	abstract Map<String, Object> queryRepeat(T entity);
 
 	/**
-	 * check repeat by single entity
+	 * query repeat by single instance
 	 *
 	 * @since 2019/04/19
 	 * @author LiuGangQiang
 	 * @param entity
 	 * @return {@link T}
 	 */
-	abstract T getRepeatForEntity(T entity);
+	abstract T queryRepeatForEntity(T entity);
 }

@@ -1,23 +1,26 @@
 package org.cloud.service.core.session;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月11日
- * @description: AuthenticationSession
+ * @since 2019/04/20
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.session
+ * @remark redis session
  */
-public class RedisSession implements Serializable {
+public class RedisSession<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	/**
-	 * @type: {@link String}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 唯一区别串
+	 * unique identification
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link String}
 	 */
 	private String identify;
 	/**
@@ -26,12 +29,12 @@ public class RedisSession implements Serializable {
 	 * @date: 2018年8月31日
 	 * @description: 用户信息
 	 */
-	private Map<String, Object> data;
+	private T data;
 
 	public RedisSession() {
 	}
 
-	public RedisSession(String identify, Map<String, Object> data) {
+	public RedisSession(String identify, T data) {
 		this.identify = identify;
 		this.data = data;
 	}
@@ -44,11 +47,11 @@ public class RedisSession implements Serializable {
 		this.identify = identify;
 	}
 
-	public Map<String, Object> getData() {
+	public T getData() {
 		return data;
 	}
 
-	public void setData(Map<String, Object> data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 }

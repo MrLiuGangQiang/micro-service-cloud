@@ -1,88 +1,96 @@
 package org.cloud.service.core.result;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月10日
- * @description: 状态枚举类
+ * @since 2019/04/20
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.result
+ * @remark api code enum
  */
 public enum ApiCodeEnum {
 
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 成功
+	 * request execution successful
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	OK(200, "Request execution successful"),
-
+	OK(200, "request execution successful"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 失败
+	 * request execution failed
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	FAIL(202, "Request execution failed"),
+	FAIL(202, "request execution failed"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 请求参数有误
+	 * request parameter error
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	BAD_REQUEST(400, "Request parameter error"),
+	BAD_REQUEST(400, "request parameter error"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 未授权
+	 * request not authorized
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	UNAUTHORIZED(401, "Request not authorized"),
-
+	UNAUTHORIZED(401, "request not authorized"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 权限不足
+	 * request no authority
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	FORBIDDEN(403, "Request no authority"),
-
+	FORBIDDEN(403, "request no authority"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 未找到满足条件的数据
+	 * data not found
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	NOT_FOUND(404, "Data not found"),
+	NOT_FOUND(404, "data not found"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 数据冲突
+	 * data conflict
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	CONFLICT(409, "Data conflict"),
+	CONFLICT(409, "data conflict"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 系统异常
+	 * internal server error
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	ERROR(500, "Internal Server Error"),
+	ERROR(500, "internal server error"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 未定义
+	 * interface not implemented
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	UNIMPLEMENTED(501, "Not implemented"),
-
+	UNIMPLEMENTED(501, "interface not implemented"),
 	/**
-	 * @type: {@link ApiCodeEnum}
-	 * @author: LiuGangQiang
-	 * @date: 2018年8月31日
-	 * @description: 响应超时
+	 * service gateway timeout
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @type {@link ApiCodeEnum}
 	 */
-	TIMEOUT(504, "Service gateway timeout");
+	TIMEOUT(504, "service gateway timeout");
 
 	private int value;
 	private String message;

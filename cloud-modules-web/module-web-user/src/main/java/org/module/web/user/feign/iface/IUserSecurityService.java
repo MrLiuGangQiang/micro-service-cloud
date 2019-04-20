@@ -37,7 +37,7 @@ public interface IUserSecurityService {
 	 * @description: 获取登录信息
 	 */
 	@GetMapping("/user/login/info")
-	public JsonApi<RedisSession> getLoginInfo(@RequestParam("token") String token);
+	public JsonApi<RedisSession<Map<String, Object>>> getLoginInfo(@RequestParam("token") String token);
 
 	/**
 	 * @author: LiuGangQiang

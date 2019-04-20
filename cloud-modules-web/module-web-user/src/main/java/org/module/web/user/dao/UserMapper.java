@@ -12,5 +12,5 @@ import org.module.web.user.entity.User;
  * @description: UserMapper
  */
 @Mapper
-public interface UserMapper extends IBaseMapper<User> {
+public interface UserMapper extends IBaseMapper<User,Integer> {
 }

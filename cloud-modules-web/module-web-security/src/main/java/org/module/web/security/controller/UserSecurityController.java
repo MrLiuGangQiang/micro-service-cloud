@@ -45,7 +45,7 @@ public class UserSecurityController {
 	public JsonApi<?> login(String phone, String password) {
 		Map<String, Object> userMap = userSecurityService.getUserByPhoneAndPassword(phone, password);
 		if (userMap != null && !userMap.isEmpty()) {
-			String token = RedisToken.createToken(TerminalEnum.WEB, userMap.get("id"));
+			String token = RedisToken.getInstance().createToken(TerminalEnum.WEB, userMap.get("id").toString());
 			redisCacheManager.putSession(BaseGlobal.CACHE_WEB_USER, token, userMap);
 			userMap.put("token", token);
 			return new JsonApi<Map<String, Object>>(ApiCodeEnum.OK, userMap);
@@ -62,9 +62,9 @@ public class UserSecurityController {
 	 */
 	@GetMapping("/login/info")
 	public JsonApi<?> getLoginInfo(String token) {
-		RedisSession session = redisCacheManager.getSession(BaseGlobal.CACHE_WEB_USER, token);
+		RedisSession<?> session = redisCacheManager.getSession(BaseGlobal.CACHE_WEB_USER, token);
 		if (session != null) {
-			return new JsonApi<RedisSession>(ApiCodeEnum.OK, session);
+			return new JsonApi<RedisSession<?>>(ApiCodeEnum.OK, session);
 		}
 		return new JsonApi<>(ApiCodeEnum.FAIL, null);
 	}

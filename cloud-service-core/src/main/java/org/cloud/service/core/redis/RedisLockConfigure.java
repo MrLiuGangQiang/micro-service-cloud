@@ -4,11 +4,13 @@ import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright © 2018 Fist Team. All rights reserved.
+ * Copyright © 2019 ChengDu Smart Technology Co.Ltd All Rights Reserved.
  *
- * @author: LiuGangQiang
- * @date: 2018年12月11日
- * @description: 分布式锁
+ * @since 2019/04/20
+ * @author LiuGangQiang
+ * @project cloud-service-core
+ * @package org.cloud.service.core.redis
+ * @remark distributed redis lock config
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -17,34 +19,38 @@ import java.util.concurrent.TimeUnit;
 public @interface RedisLockConfigure {
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年11月21日
+	 * lock prefix
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @return {@link String}
-	 * @description: 前缀
 	 */
 	String prefix() default "";
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年11月21日
+	 * lock expire default 5
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @return {@link Integer}
-	 * @description: 过期时间 默认五秒
 	 */
 	int expire() default 5;
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年11月21日
+	 * lock expire time unit default {@link TimeUnit#SECONDS}
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @return {@link TimeUnit}
-	 * @description: 时间单位 默认秒
 	 */
 	TimeUnit timeUnit() default TimeUnit.SECONDS;
 
 	/**
-	 * @author: LiuGangQiang
-	 * @date: 2018年11月21日
+	 * lock delimiter default ":"
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @return {@link String}
-	 * @description: 分隔符
 	 */
 	String delimiter() default ":";
 }

@@ -1,5 +1,7 @@
 package org.module.web.user.intercept;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +33,8 @@ public class UserSecurityInterceptor extends HandlerInterceptorAdapter {
 	private IUserSecurityService userSecurityService;
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
 		if (handler instanceof HandlerMethod) {
 			/* 构造就送处理对象 */
 			ObjectMapper om = new ObjectMapper();
@@ -71,10 +74,10 @@ public class UserSecurityInterceptor extends HandlerInterceptorAdapter {
 					response.getWriter().write(om.writeValueAsString(new JsonApi<>(ApiCodeEnum.BAD_REQUEST)));
 					return false;
 				}
-				JsonApi<RedisSession> sessionApi = userSecurityService.getLoginInfo(token);
+				JsonApi<RedisSession<Map<String, Object>>> sessionApi = userSecurityService.getLoginInfo(token);
 				if (sessionApi.compare(ApiCodeEnum.OK)) {
 					/* 登录信息不为空证明已登录，则放行 */
-					RedisSession session = sessionApi.getData();
+					RedisSession<?> session = sessionApi.getData();
 					if (session != null) {
 						return true;
 					}
@@ -92,7 +95,7 @@ public class UserSecurityInterceptor extends HandlerInterceptorAdapter {
 					response.getWriter().write(om.writeValueAsString(new JsonApi<>(ApiCodeEnum.BAD_REQUEST)));
 					return false;
 				}
-				JsonApi<RedisSession> sessionApi = userSecurityService.getLoginInfo(token);
+				JsonApi<RedisSession<Map<String, Object>>> sessionApi = userSecurityService.getLoginInfo(token);
 				if (!sessionApi.compare(ApiCodeEnum.OK)) {
 					response.getWriter().write(om.writeValueAsString(new JsonApi<>(ApiCodeEnum.UNAUTHORIZED)));
 					return false;
@@ -111,7 +114,8 @@ public class UserSecurityInterceptor extends HandlerInterceptorAdapter {
 					response.getWriter().write(om.writeValueAsString(new JsonApi<>(ApiCodeEnum.UNAUTHORIZED)));
 					return false;
 				case PERMISSION:
-					JsonApi<Boolean> permissionApi = userSecurityService.authByPermission(uid, oid, authentication.value());
+					JsonApi<Boolean> permissionApi = userSecurityService.authByPermission(uid, oid,
+							authentication.value());
 					if (permissionApi.compare(ApiCodeEnum.OK)) {
 						if (permissionApi.getData()) {
 							return true;
@@ -120,7 +124,8 @@ public class UserSecurityInterceptor extends HandlerInterceptorAdapter {
 					response.getWriter().write(om.writeValueAsString(new JsonApi<>(ApiCodeEnum.UNAUTHORIZED)));
 					return false;
 				case OPERATION:
-					JsonApi<Boolean> operationApi = userSecurityService.authByOperation(uid, oid, authentication.value());
+					JsonApi<Boolean> operationApi = userSecurityService.authByOperation(uid, oid,
+							authentication.value());
 					if (operationApi.compare(ApiCodeEnum.OK)) {
 						if (operationApi.getData()) {
 							return true;

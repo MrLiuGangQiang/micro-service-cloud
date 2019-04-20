@@ -19,35 +19,35 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserSecurityServiceFallback implements IUserSecurityService {
-	private static final Logger logger = LoggerFactory.getLogger(UserSecurityServiceFallback.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserSecurityServiceFallback.class);
 
 	@Override
 	public JsonApi<Map<String, Object>> login(String username, String password) {
-		logger.error("feign error method login parameter [username={},password={}]", username, password);
+		LOGGER.error("feign error method login parameter [username={},password={}]", username, password);
 		return new JsonApi<>(ApiCodeEnum.TIMEOUT);
 	}
 
 	@Override
-	public JsonApi<RedisSession> getLoginInfo(String token) {
-		logger.error("feign error method getLoginInfo parameter [token={}]", token);
+	public JsonApi<RedisSession<Map<String, Object>>> getLoginInfo(String token) {
+		LOGGER.error("feign error method getLoginInfo parameter [token={}]", token);
 		return new JsonApi<>(ApiCodeEnum.TIMEOUT);
 	}
 
 	@Override
 	public JsonApi<Boolean> authByRole(Object uid, Object oid, String target) {
-		logger.error("feign error method authByRole parameter [uid={},oid={},target={}]", uid, oid, target);
+		LOGGER.error("feign error method authByRole parameter [uid={},oid={},target={}]", uid, oid, target);
 		return new JsonApi<>(ApiCodeEnum.TIMEOUT);
 	}
 
 	@Override
 	public JsonApi<Boolean> authByPermission(Object uid, Object oid, String target) {
-		logger.error("feign error method authByPermission parameter [uid={},oid={},target={}]", uid, oid, target);
+		LOGGER.error("feign error method authByPermission parameter [uid={},oid={},target={}]", uid, oid, target);
 		return new JsonApi<>(ApiCodeEnum.TIMEOUT);
 	}
 
 	@Override
 	public JsonApi<Boolean> authByOperation(Object uid, Object oid, String target) {
-		logger.error("feign error method authByOperation parameter [uid={},oid={},target={}]", uid, oid, target);
+		LOGGER.error("feign error method authByOperation parameter [uid={},oid={},target={}]", uid, oid, target);
 		return new JsonApi<>(ApiCodeEnum.TIMEOUT);
 	}
 

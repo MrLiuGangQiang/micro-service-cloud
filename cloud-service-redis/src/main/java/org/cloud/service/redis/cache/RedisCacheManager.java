@@ -68,7 +68,8 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 	 * @param allowInFlightCacheCreation allow create unconfigured caches.
 	 * @since 2.0.4
 	 */
-	private RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration, boolean allowInFlightCacheCreation) {
+	private RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration,
+			boolean allowInFlightCacheCreation) {
 
 		Assert.notNull(cacheWriter, "CacheWriter must not be null!");
 		Assert.notNull(defaultCacheConfiguration, "DefaultCacheConfiguration must not be null!");
@@ -102,7 +103,8 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 	 *                                  be created with given
 	 *                                  {@literal defaultCacheConfiguration}.
 	 */
-	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration, String... initialCacheNames) {
+	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration,
+			String... initialCacheNames) {
 
 		this(cacheWriter, defaultCacheConfiguration, true, initialCacheNames);
 	}
@@ -122,7 +124,8 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 	 *                                   {@literal defaultCacheConfiguration}.
 	 * @since 2.0.4
 	 */
-	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration, boolean allowInFlightCacheCreation, String... initialCacheNames) {
+	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration,
+			boolean allowInFlightCacheCreation, String... initialCacheNames) {
 
 		this(cacheWriter, defaultCacheConfiguration, allowInFlightCacheCreation);
 
@@ -142,7 +145,8 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 	 *                                   configuration to use for those caches. Must
 	 *                                   not be {@literal null}.
 	 */
-	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration, Map<String, RedisCacheConfiguration> initialCacheConfigurations) {
+	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration,
+			Map<String, RedisCacheConfiguration> initialCacheConfigurations) {
 
 		this(cacheWriter, defaultCacheConfiguration, initialCacheConfigurations, true);
 	}
@@ -163,7 +167,8 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 	 *                                   caches at runtime.
 	 * @since 2.0.4
 	 */
-	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration, Map<String, RedisCacheConfiguration> initialCacheConfigurations, boolean allowInFlightCacheCreation) {
+	public RedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration,
+			Map<String, RedisCacheConfiguration> initialCacheConfigurations, boolean allowInFlightCacheCreation) {
 
 		this(cacheWriter, defaultCacheConfiguration, allowInFlightCacheCreation);
 
@@ -194,7 +199,8 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 
 		Assert.notNull(connectionFactory, "ConnectionFactory must not be null!");
 
-		return new RedisCacheManager(new DefaultRedisCacheWriter(connectionFactory), RedisCacheConfiguration.defaultCacheConfig());
+		return new RedisCacheManager(new DefaultRedisCacheWriter(connectionFactory),
+				RedisCacheConfiguration.defaultCacheConfig());
 	}
 
 	/**
@@ -224,61 +230,62 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 	}
 
 	/**
-	 * @author <font color="red"><b>Liu.Gang.Qiang</b></font>
+	 * put session
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @param cacheName
 	 * @param token
 	 * @param data
-	 * @date 2018年7月17日
-	 * @version 1.0
-	 * @description
 	 */
-	public void putSession(String cacheName, String token, Map<String, Object> data) {
-		// 解密字符串
-		String[] tokens = RedisToken.decodeToekn(token).split(":");
-		// 拆分信息 第一个是平台标识 第二个是UUID第三个是用户唯一标识
+	public <T> void putSession(String cacheName, String token, T data) {
+		String[] tokens = RedisToken.getInstance().decodeToekn(token).split(":");
 		String platform = tokens[0];
 		String uuid = tokens[1];
 		String flag = tokens[2];
-		this.getCache(cacheName).put(platform + ":" + flag, new RedisSession(uuid, data));
+		this.getCache(cacheName).put(platform + ":" + flag, new RedisSession<T>(uuid, data));
 	}
 
 	/**
-	 * @author <font color="red"><b>Liu.Gang.Qiang</b></font>
+	 * remove session
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
 	 * @param cacheName
 	 * @param flag
-	 * @date 2018年7月17日
-	 * @version 1.0
-	 * @description
+	 * @param terminal
 	 */
 	public void removeSession(String cacheName, String flag, TerminalEnum terminal) {
 		this.getCache(cacheName).evict(terminal.getFlag() + ":" + flag);
 	}
 
 	/**
-	 * @author <font color="green"><b>Liu.Gang.Qiang</b></font>
-	 * @param authenticationToken
-	 * @return {@link AuthenticationSession}
-	 * @date 2016年11月2日
-	 * @version 1.0
-	 * @description 获取缓存中用户登录对象
+	 * get session
+	 *
+	 * @since 2019/04/20
+	 * @author LiuGangQiang
+	 * @param cacheName
+	 * @param token
+	 * @return {@link RedisSession}
 	 */
-	public RedisSession getSession(String cacheName, String token) {
-		// 解密字符串
-		String[] tokens = RedisToken.decodeToekn(token).split(":");
-		// 拆分信息 第一个是平台标识 第二个是UUID第三个是用户唯一标识
+	public RedisSession<?> getSession(String cacheName, String token) {
+		String[] tokens = RedisToken.getInstance().decodeToekn(token).split(":");
 		String platform = tokens[0];
 		String uuid = tokens[1];
 		String flag = tokens[2];
 		if (cacheName == null || cacheName == "") {
 			throw new RuntimeException("redis cache name is empty");
 		}
-		/* 缓存key */
 		String key = platform + ":" + flag;
 		Cache cache = this.getCache(cacheName);
 		if (cache != null) {
-			RedisSession session = cache.get(key, RedisSession.class);
+			RedisSession<?> session = cache.get(key, RedisSession.class);
 			if (session != null) {
-				return uuid.equals(session.getIdentify()) ? session : null;
+				if (!uuid.equals(session.getIdentify())) {
+					this.getCache(cacheName).evict(key);
+					return null;
+				}
+				return session;
 			}
 		}
 		return null;
@@ -444,10 +451,12 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 		 * @param cacheConfigurations must not be {@literal null}.
 		 * @return this {@link RedisCacheManagerBuilder}.
 		 */
-		public RedisCacheManagerBuilder withInitialCacheConfigurations(Map<String, RedisCacheConfiguration> cacheConfigurations) {
+		public RedisCacheManagerBuilder withInitialCacheConfigurations(
+				Map<String, RedisCacheConfiguration> cacheConfigurations) {
 
 			Assert.notNull(cacheConfigurations, "CacheConfigurations must not be null!");
-			cacheConfigurations.forEach((cacheName, configuration) -> Assert.notNull(configuration, String.format("RedisCacheConfiguration for cache %s must not be null!", cacheName)));
+			cacheConfigurations.forEach((cacheName, configuration) -> Assert.notNull(configuration,
+					String.format("RedisCacheConfiguration for cache %s must not be null!", cacheName)));
 
 			this.initialCaches.putAll(cacheConfigurations);
 
@@ -480,7 +489,8 @@ public class RedisCacheManager extends AbstractTransactionSupportingCacheManager
 		 */
 		public RedisCacheManager build() {
 
-			RedisCacheManager cm = new RedisCacheManager(cacheWriter, defaultCacheConfiguration, initialCaches, allowInFlightCacheCreation);
+			RedisCacheManager cm = new RedisCacheManager(cacheWriter, defaultCacheConfiguration, initialCaches,
+					allowInFlightCacheCreation);
 
 			cm.setTransactionAware(enableTransactions);
 
