@@ -3,7 +3,7 @@
 	<!-- console settings -->
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%cyan(%d{yyyy-MM-dd HH:mm:ss}) %highlight([%p]) %yellow([%t]) %green(%c) - %highlight(%m%n)</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%p] [%t] %c - %m%n</pattern>
 		</encoder>
 	</appender>
 

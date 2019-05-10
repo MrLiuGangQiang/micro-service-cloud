@@ -17,7 +17,7 @@ import org.springframework.cloud.client.SpringCloudApplication;
 public class GatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(GatewayApplication.class);
-		app.setBannerMode(Banner.Mode.OFF);
+		app.setBannerMode(Banner.Mode.CONSOLE);
 		app.run(args);
 	}
 }
